@@ -1,1 +1,3 @@
-Docker stack samples
+# Docker stacks samples
+
+Different sample stacks. 
