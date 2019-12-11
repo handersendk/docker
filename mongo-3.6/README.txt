@@ -1,0 +1,1 @@
+docker stack deploy -c mongo-stack.yml mg36

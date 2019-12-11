@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo:3.6-xenial
+    ports:
+        - 27030:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongoadmin
+      MONGO_INITDB_ROOT_PASSWORD: 7xEoDaSzzZPHsp59XnjMpbTUFjde3Sero
+    volumes:
+        - mongo36dev_data:/data/db
+
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: mongoexpress
+      ME_CONFIG_MONGODB_ADMINPASSWORD: XpP9MgNNzgNMmZ8Cq4HyCPbHMiXpfG7P7
+
+volumes:
+  mongo36dev_data:
