@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  heimdall:
+    image: linuxserver/heimdall
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/Berlin
+    volumes:
+      - "heimdall_data:/config"
+    ports:
+      - "4000:80"
+      - "4001:443"
+
+volumes:
+  heimdall_data:
