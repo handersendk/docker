@@ -1,0 +1,1 @@
+docker stack deploy -c stack_localfolder.yml docu
