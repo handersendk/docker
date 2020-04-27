@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:12.1-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: pgadmin
+      POSTGRES_PASSWORD: pe5vpPCJm8FsrXjicFiNY4MJ8HmAKNk97RtVQHsoQnwmroMo
+    volumes:
+      - postgresdevdb:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - 7080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@unknown.local
+      PGADMIN_DEFAULT_PASSWORD: uZEZXGnjdgY2QStCWr5riXKYNQDHLG8Gpex6JNFqrZeRbbNh
+
+volumes:
+  postgresdevdb:
