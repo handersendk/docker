@@ -1,0 +1,23 @@
+################################################################################
+# HomeAssistant Stack or Compose
+################################################################################
+# docker stack deploy -c homeassistant-stack.yml ha
+# docker-compose -f homeassistant-stack.yml -p homeassistant up
+# docker-compose -f homeassistant-stack.yml -p homeassistant up -d
+################################################################################
+version: "3"
+
+services:
+  homeassistant:
+    image: homeassistant/home-assistant:stable
+    ports:
+      - 8123:8123
+    environment:
+      - TZ=Europe/Copenhagen
+    volumes:
+      - ha_config:/config
+    restart: always
+    network_mode: host
+
+volumes:
+  ha_config:
