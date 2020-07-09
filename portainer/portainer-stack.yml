@@ -1,3 +1,4 @@
+# docker stack deploy -c portainer-stack.yml p
 version: "3"
 
 services:
