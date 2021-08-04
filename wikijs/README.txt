@@ -1,0 +1,1 @@
+docker stack deploy -c wiki-stack.yml wjs

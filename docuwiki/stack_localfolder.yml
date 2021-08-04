@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  dokuwiki:
+    image: "bitnami/dokuwiki:latest"
+    volumes:
+      - "./data:/bitnami"
+    environment:
+      - DOKUWIKI_WIKI_NAME=My DocuWiki
+      - DOKUWIKI_USERNAME=Admin
+      - DOKUWIKI_PASSWORD=cwnQp74HdfigzYqhW8rzUKo9bvbkD4cv
+      - DOKUWIKI_FULL_NAME=AdminUser
+      - DOKUWIKI_EMAIL=admin@localhost.host
+    ports:
+      - "7040:80"
+      - "7041:443"
