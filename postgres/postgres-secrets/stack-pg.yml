@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_root_password
+    secrets:
+      - db_root_password
+    volumes:
+      - postgresdevdb:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - 7080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@unknown.local
+      PGADMIN_DEFAULT_PASSWORD: pe5vpPCJm8FsrXjicFiNY4MJ8HmAKNk97RtVQHsoQnwmroMo
+
+secrets:
+  db_root_password:
+    external: true
+
+volumes:
+  postgresdevdb:
