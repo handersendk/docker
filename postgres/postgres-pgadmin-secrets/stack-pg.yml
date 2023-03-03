@@ -24,12 +24,12 @@ services:
       - pgadmin_password
 
     volumes:
-      - pgdata:/var/lib/pgadmin
+      - pgadmin_data:/var/lib/pgadmin
 
 volumes:
   db_data:
     driver: local
-  pgdata:
+  pgadmin_data:
     driver: local
 
 secrets:
