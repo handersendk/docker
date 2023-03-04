@@ -1,0 +1,44 @@
+version: "3.8"
+
+# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+# Note you need to use the full url to login. Otherwise you get an 403.
+# http://dockerhost:7081/admin/login.php
+services:
+  pihole:
+    image: pihole/pihole:latest
+    # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      # - "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
+      - "7081:80/tcp"
+    environment:
+      TZ: "Europe/Copenhagen"
+      # DNSMASQ_LISTENING: all
+      # WEBPASSWORD: 'set a secure password here or it will be random'
+    # Volumes store your data between container upgrades
+    volumes:
+      - config:/etc/pihole
+      - dnsmasq:/etc/dnsmasq.d
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    # cap_add:
+    #   - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
+    networks:
+      homelan:
+        ipv4_address: 192.168.10.50
+
+volumes:
+  config:
+    driver: local
+
+  dnsmasq:
+    driver: local
+
+networks:
+  homelan:
+    driver: macvlan
+    driver_opts:
+      parent: ens18 # ip link - show to find interface name
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24
