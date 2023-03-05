@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  cloudflare:
+    image: "louislam/uptime-kuma"
+    volumes:
+      - app_data:/app/data
+    ports:
+      - 3001:3001
+
+volumes:
+  app_data:
+    driver: local
